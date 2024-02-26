@@ -18,8 +18,9 @@ export class HeroService {
     private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
-    const heroes = of(HEROES);
-    return heroes;
+    // const heroes = of(HEROES);
+    // return heroes;
+    return this.http.get<Hero[]>(this.heroesUrl)
   }
 
   getHero(id: number): Observable<Hero> {
