@@ -1,0 +1,15 @@
+<h2>Claims from Duende Server</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let claim of duendeClaims">
+            <td>{{claim.type}}</td>
+            <td>{{claim.value}}</td>
+        </tr>
+    </tbody>
+</table>

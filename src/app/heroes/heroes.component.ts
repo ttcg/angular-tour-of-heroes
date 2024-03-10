@@ -4,7 +4,6 @@ import { Hero } from '../hero';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -15,10 +14,8 @@ import { MessageService } from '../message.service';
 })
 export class HeroesComponent {
   heroes: Hero[] = [];
-  selectedHero?: Hero;
 
-  constructor(private heroService: HeroService, private messageService: MessageService) {
-
+  constructor(private heroService: HeroService) {
   }
 
   ngOnInit(): void {
@@ -28,10 +25,6 @@ export class HeroesComponent {
   getHeroes(): void {
     this.heroService.getHeroes().subscribe(items => {
       this.heroes = items;
-
-      console.log(this.heroes.map(o=>o.id))
-    var nextId = Math.max(...this.heroes.map(o=>o.id)); 
-    console.log(nextId);
     });
   }
 
@@ -39,13 +32,13 @@ export class HeroesComponent {
     name = name.trim();
     if (!name) { return; }
 
-    var nextId = Math.max(...this.heroes.map(o=>o.id)); 
+    var nextId = Math.max(...this.heroes.map(o => o.id));
     this.heroService.addHero({ id: nextId + 1, name } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
       });
   }
-  
+
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe();

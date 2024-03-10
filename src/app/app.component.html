@@ -2,6 +2,12 @@
 <nav>
     <a routerLink="/dashboard">Dashboard</a>
     <a routerLink="/heroes">Heroes</a>
+    <a routerLink="/apicall">Api Call</a>
+</nav>
+<nav>
+    <h1 *ngIf="userName">Hello, {{userName}}</h1>
+    <button *ngIf="!userName" (click)="login()" class="btn btn-default">Login</button>
+    <button *ngIf="userName" (click)="logout()" class="btn btn-default">Logout</button>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
